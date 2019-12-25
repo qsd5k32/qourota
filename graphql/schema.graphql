@@ -1,0 +1,37 @@
+type User {
+    id: ID!
+    name: String!
+    email: String!
+    avatar: String!
+}
+
+type Wilaya {
+    id: ID!
+    code: Int!
+    name: String!
+}
+
+type UserPaginator {
+    paginatorInfo: PaginatorInfo!
+    data: [User!]!
+}
+
+type PaginatorInfo {
+    count: Int!
+    currentPage: Int!
+    firstItem: Int
+    hasMorePages: Boolean!
+    lastItem: Int
+    lastPage: Int!
+    perPage: Int!
+    total: Int!
+}
+
+type Query {
+
+    user(id: ID! @eq): User @find
+    users: [User!]! @paginate
+
+    wilayas: [Wilaya!]! @all
+    wilaya(id: ID! @eq): Wilaya @find
+}
